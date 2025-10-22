@@ -8,7 +8,7 @@ import json
 import os
 from io import StringIO
 
-genai.configure(api_key="") 
+genai.configure(api_key="AIzaSyDB0mtVUVSyhRrXinbFrMuYeRMa2We4gYI") 
 
 # Page config
 st.set_page_config(page_title="Resume Screener", layout="wide", page_icon="🤖")
@@ -239,3 +239,4 @@ if st.button("🔍 Analyze Resumes"):
                 </div>
             </div>
             """, unsafe_allow_html=True)
+
