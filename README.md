@@ -1,8 +1,8 @@
 # resume-screening-app
-# 🤖 AI Resume Ranking System  
+# 🤖 Resume Ranking System  
 
 ### 🚀 Overview  
-The **AI Resume Ranking System** is a smart Streamlit-based web app that evaluates and ranks candidates based on their **AI-generated scores**.  
+The **Resume Ranking System** is a smart Streamlit-based web app that evaluates and ranks candidates based on their **generated scores**.  
 It visualizes candidate performance, filters by score, and automatically determines whether each candidate is **Selected ✅** or **Not Selected ❌**.
 
 ---
