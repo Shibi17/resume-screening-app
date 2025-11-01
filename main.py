@@ -10,10 +10,8 @@ from io import StringIO
 
 genai.configure(api_key="AIzaSyBkWxu3CzUo0PWI1DdF3BcggpbyvTrjN4k") 
 
-# Page config
 st.set_page_config(page_title="Resume Screener", layout="wide", page_icon="🤖")
 
-# ---------- Custom Styles ----------
 st.markdown("""
 <style>
     body {
@@ -53,7 +51,6 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# ---------- Header ----------
 st.markdown("""
 <div class='main-header'>
     <h1>🤖 Resume Screener & Skill Analyzer</h1>
@@ -61,7 +58,6 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# ---------- Sidebar ----------
 st.sidebar.header("⚙️ Filters & Options")
 min_score = st.sidebar.slider("Minimum Score to Display", 0, 100, 0)
 compare_placeholder = st.sidebar.empty()
@@ -69,11 +65,9 @@ download_placeholder = st.sidebar.empty()
 st.sidebar.markdown("---")
 st.sidebar.info("💡 Tip: Adjust the slider or compare two candidates below.")
 
-# ---------- Input ----------
 job_description = st.text_area("📋 Enter Job Description:", height=180)
 uploaded_files = st.file_uploader("📄 Upload Candidate Resumes (PDF or TXT):", type=["pdf", "txt"], accept_multiple_files=True)
 
-# ---------- Helper ----------
 def color_for_match(pct):
     if pct >= 80:
         return "stat-green"
@@ -81,7 +75,6 @@ def color_for_match(pct):
         return "stat-orange"
     return "stat-red"
 
-# ---------- Analysis ----------
 if st.button("🔍 Analyze Resumes"):
 
     if not job_description or not uploaded_files:
@@ -158,11 +151,9 @@ if st.button("🔍 Analyze Resumes"):
         df = pd.DataFrame(results).sort_values(by="Score", ascending=False)
         filtered_df = df[df["Score"] >= min_score]
 
-        # ---------- Table ----------
         st.markdown("### 📊 Summary Overview")
         st.dataframe(filtered_df[["Candidate", "Score", "Matched %", "Missing %"]], use_container_width=True)
 
-        # ---------- Chart ----------
         st.markdown("### 📈 Candidate Score Comparison")
         fig, ax = plt.subplots(figsize=(8, 4))
         ax.barh(filtered_df["Candidate"], filtered_df["Score"], color="#60a5fa")
@@ -171,7 +162,6 @@ if st.button("🔍 Analyze Resumes"):
         plt.gca().invert_yaxis()
         st.pyplot(fig)
 
-        # ---------- Download ----------
         csv = filtered_df.to_csv(index=False)
         download_placeholder.download_button(
             label="📥 Download Results as CSV",
@@ -180,7 +170,6 @@ if st.button("🔍 Analyze Resumes"):
             mime="text/csv"
         )
 
-        # ---------- Compare Two Candidates ----------
         st.sidebar.markdown("---")
         st.sidebar.subheader("🔍 Compare Two Candidates")
 
@@ -221,7 +210,6 @@ if st.button("🔍 Analyze Resumes"):
                     </div>
                     """, unsafe_allow_html=True)
 
-        # ---------- Candidate Insights ----------
         st.markdown("### 🧾 Detailed Candidate Insights")
         for _, row in filtered_df.iterrows():
             match_class = color_for_match(row["Matched %"])
@@ -239,6 +227,7 @@ if st.button("🔍 Analyze Resumes"):
                 </div>
             </div>
             """, unsafe_allow_html=True)
+
 
 
 
