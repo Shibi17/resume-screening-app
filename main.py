@@ -85,7 +85,7 @@ if mode == "AI Resume Screening":
                 }}
                 """
                 try:
-                    model = genai.GenerativeModel("gemini-1.5-flash")
+                    model = genai.GenerativeModel("models/gemini-2.5-flash")
                     response = model.generate_content(prompt)
                     raw = re.sub(r"```(json)?", "", response.text.strip()).strip()
                     data = json.loads(raw)
@@ -120,8 +120,12 @@ if mode == "AI Resume Screening":
             st.markdown("### 📊 Summary Overview")
             st.dataframe(filtered_df[["Candidate", "Score", "Matched %", "Missing %", "Selection Status"]], use_container_width=True)
             st.markdown("### 📈 Candidate Score Comparison")
-            fig, ax = plt.subplots(figsize=(8, 4))
-            ax.barh(filtered_df["Candidate"], filtered_df["Score"], color="#60a5fa", height=0.4)
+            fig, ax = plt.subplots(figsize=(4, 1.5))   # reduces graph width & height
+            ax.barh(
+                filtered_df["Candidate"],
+                filtered_df["Score"],
+                height=0.15                             # reduces bar thickness
+            )   
             ax.set_xlabel("AI Score")
             ax.set_title("Resume Ranking")
             plt.gca().invert_yaxis()
