@@ -8,7 +8,7 @@ import json
 import os
 from io import StringIO
 
-genai.configure(api_key="AIzaSyBi9xXWb0pHpHtJ-JXoWho_uAtww2zzJIs") 
+genai.configure(api_key="AIzaSyAThEZTThxF_FAl8beZtpAiS8_MSWdK8rw") 
 
 st.set_page_config(page_title="Resume Screener & Ranking System", layout="wide", page_icon="🤖")
 
@@ -173,3 +173,4 @@ else:
                 st.write(f"{row['Candidate']}: {row['Selection_Status']}")
     else:
         st.info("Please upload a CSV file to proceed.")
+
