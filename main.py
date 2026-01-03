@@ -85,7 +85,7 @@ if mode == "AI Resume Screening":
                 }}
                 """
                 try:
-                    model = genai.GenerativeModel("gemini-2.5-pro")
+                    model = genai.GenerativeModel("gemini-1.5-flash")
                     response = model.generate_content(prompt)
                     raw = re.sub(r"```(json)?", "", response.text.strip()).strip()
                     data = json.loads(raw)
@@ -173,4 +173,5 @@ else:
                 st.write(f"{row['Candidate']}: {row['Selection_Status']}")
     else:
         st.info("Please upload a CSV file to proceed.")
+
 
